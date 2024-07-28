@@ -50,8 +50,8 @@ Run the automated tests to verify the server configuration:
 
 1. **Install Bats**: Ensure that the Bats testing framework is installed.
 2. **Execute Tests**: Run the test suite located in the tests directory.
-  ```bash
-  bats tests/
+   ```bash
+   bats tests/
 
 ### Monitoring and Scaling
 
