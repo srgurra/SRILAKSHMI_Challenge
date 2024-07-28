@@ -59,5 +59,8 @@ Run the automated tests to verify the server configuration:
 - **Scaling**: The infrastructure can be scaled using AWS Auto Scaling groups based on metrics like CPU usage.
 
 
-   
+### Execution of programs
+   ```bash
+   python3 coding_challenge_hr.py
+   python3 json_transformer.py
   
