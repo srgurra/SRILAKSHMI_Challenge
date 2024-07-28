@@ -28,7 +28,7 @@ The application is hosted on an AWS EC2 instance, secured with security groups a
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/<YourGitHubUsername>/SRILAKSHMI_Challenge.git
+   git clone https://github.com/srgurra/SRILAKSHMI_Challenge.git
    cd SRILAKSHMI_Challenge
 2. **Provision Infrastructure with Terraform**:
    - Navigate to the terraform directory and initialize Terraform.
