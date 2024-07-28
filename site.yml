@@ -1,0 +1,53 @@
+- hosts: web_servers
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Create web page
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+          <head>
+          <title>Hello World</title>
+          </head>
+          <body>
+          <h1>Hello World!</h1>
+          </body>
+          </html>
+
+    - name: Setup self-signed certificate
+      shell: |
+        mkdir -p /etc/nginx/ssl
+        openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 \
+          -subj "/C=US/ST=State/L=City/O=Organization/CN=example.com" \
+          -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+
+    - name: Configure Nginx for HTTPS
+      copy:
+        dest: /etc/nginx/sites-available/default
+        content: |
+          server {
+            listen 80;
+            server_name _;
+            return 301 https://$host$request_uri;
+          }
+          server {
+            listen 443 ssl;
+            server_name _;
+            ssl_certificate /etc/nginx/ssl/nginx.crt;
+            ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+            location / {
+              root /var/www/html;
+              index index.html index.htm;
+            }
+          }
+
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
