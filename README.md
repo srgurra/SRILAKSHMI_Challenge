@@ -35,10 +35,10 @@ The application is hosted on an AWS EC2 instance, secured with security groups a
    ```bash
    cd terraform
    terraform init
-  - Apply the Terraform configuration to create the necessary AWS resources.
-  ```bash
-  terraform apply
-3. **Configure the Web Server with Ansible:
+   - Apply the Terraform configuration to create the necessary AWS resources.
+   ```bash
+   terraform apply
+3. **Configure the Web Server with Ansible**:
    - Navigate to the ansible directory and run the playbook.
    ```bash
    cd ../ansible
