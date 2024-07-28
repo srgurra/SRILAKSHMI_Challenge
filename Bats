@@ -1,0 +1,17 @@
+#!/usr/bin/env bats
+
+@test "Nginx is installed" {
+  run which nginx
+  [ "$status" -eq 0 ]
+}
+
+@test "Nginx is running" {
+  run systemctl is-active nginx
+  [ "$status" -eq 0 ]
+}
+
+@test "Web page is served" {
+  run curl -k https://localhost
+  [ "$status" -eq 0 ]
+  [ "${output}" == *"Hello World!"* ]
+}
